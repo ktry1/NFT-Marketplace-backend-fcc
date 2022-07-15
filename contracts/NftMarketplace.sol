@@ -79,7 +79,7 @@ contract NftMarketplace {
     /// @param  price NFT will be listed with this price
     
     function listItem(address nftAddress, uint256 tokenId, uint256 price) external 
-    notListed(nftAddress,tokenId,msg.sender) isOwner(nftAddress,tokenId,msg.sender){
+    notListed(nftAddress,tokenId,msg.sender) isOwner(nftAddress, tokenId, msg.sender){
         if (price<=0){
             revert NftMarketplace__InvalidPrice();
         }
@@ -116,7 +116,7 @@ contract NftMarketplace {
 
     function withdrawProceeds() external {
         uint256 proceeds = s_proceeds[msg.sender];
-        if((proceeds > 0)){
+        if(!(proceeds > 0)){
             revert NftMarketplace__NoProceeds();
         }
         s_proceeds[msg.sender] = 0;
